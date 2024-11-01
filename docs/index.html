@@ -1041,6 +1041,12 @@
 
 </script>
 <script type="module">//;(async () => {
+    function setUrlParameter(param, value) {
+        const url = new URL(window.location);
+        url.searchParams.set(param, value);
+        window.history.replaceState({}, '', url);
+    }
+
     // 
     // 
     // Initialize
@@ -1132,15 +1138,13 @@
                     selection.removeAllRanges();
                     
                     // Set the range to the end of the contentEditable div
-                    console.debug(`[...card.children]`,[...card.children])
-                    window.c = [...card.children]
-                    console.debug(`[...card.children].filter(each=>each.tagName == "div"`,[...card.children].filter(each=>each.tagName == "DIV"))
                     range.selectNodeContents([...card.children].filter(each=>each.tagName == "DIV").at(-1));
                     range.collapse(false); // Collapse the range to the end
                     
                     // Add the new range to the selection
                     selection.addRange(range);
                 }
+                setUrlParameter("text", text)
             }}
             style="text-align: left;max-width: 12rem; height: fit-content; background: #fcfaca; box-shadow: none; border: black 1.2px solid; border-radius: 0.3em; position: relative; padding: 7px; margin-top: 1em; margin-left: 1em;left: 6rem; top: -1rem; top">
         </Card>
