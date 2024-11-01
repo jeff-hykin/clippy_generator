@@ -4,6 +4,15 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <style>
+        .checkbox {
+            display: inline-block;
+            border: 1.3px solid black;
+            background-color: white;
+            margin-bottom: -1.5px;
+            height: 0.8em;
+            width: 0.8em;
+            box-sizing: border-box;
+        }
         .ball {
             transform: scale(0.0999) translateY(-0.5px);
             transform-origin: top left;
@@ -1098,7 +1107,7 @@
     const convertSpecialText = (text)=>{
         const startText = text
         if (text.match(/&lt;checkbox&gt;/)) {
-            text = text.replace(/&lt;checkbox&gt;/g, "<input type=checkbox><span style='white-space: pre;'> </span>")
+            text = text.replace(/&lt;checkbox&gt;/g, "<div class=checkbox><span style='white-space: pre;'> </span>")
         }
         const spacer = `<span style="white-space: pre;"> `
         
