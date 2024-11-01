@@ -156,7 +156,7 @@
         <Card style="height: fit-content; background: #fcfaca; box-shadow: none; border: black 1px solid; border-radius: 0.3em; position: relative; padding: 12px;">
         </Card>
     `
-    let text = "hi"
+    let text
     try {
         text = JSON.parse(new URL(window.location.href).searchParams.get("text"))
     } catch (error) {
@@ -165,6 +165,9 @@
         } catch (error) {
             
         }
+    }
+    if (typeof text != "string") {
+        text = "hi"
     }
     card.innerHTML = text.replace(/\n/g, "<span style='white-space: pre;'>\n</span>")
     import domtoimage from "https://esm.sh/dom-to-image@2.6.0"
