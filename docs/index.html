@@ -156,11 +156,15 @@
         <Card style="height: fit-content; background: #fcfaca; box-shadow: none; border: black 1px solid; border-radius: 0.3em; position: relative; padding: 12px;">
         </Card>
     `
-    let text
+    let text = "hi"
     try {
         text = JSON.parse(new URL(window.location.href).searchParams.get("text"))
     } catch (error) {
-        text = new URL(window.location.href).searchParams.get("text")
+        try {
+            text = new URL(window.location.href).searchParams.get("text")
+        } catch (error) {
+            
+        }
     }
     card.innerHTML = text.replace(/\n/g, "<span style='white-space: pre;'>\n</span>")
     import domtoimage from "https://esm.sh/dom-to-image@2.6.0"
@@ -176,7 +180,7 @@
                 </img>
                 </div>
             </div>
-            <button onclick=${async ()=>{
+            <button style="position: absolute; right: 2rem; bottom: 2rem; background: lightgray; border-radius: 3px; border: 1px solid #777; color: #4d4d4d; padding: 4px;" onclick=${async ()=>{
                 const img = document.createElement("img")
                 img.src = await domtoimage.toPng(document.body.children[1].children[0])
                 const link = document.createElement('a');
