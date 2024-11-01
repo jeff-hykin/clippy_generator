@@ -1185,8 +1185,8 @@
                     each.style.transform = "scale(0.0999) translateY(-4.5px)"
                 }
                 clippyBox.replaceWith(clippyBoxToRender)
-                img.src = await domtoimage.toPng(clippyBoxToRender)
-                // clippyBoxToRender.replaceWith(clippyBox)
+                img.src = await domtoimage.toPng(clippyBoxToRender, { height: clippyBoxToRender.clientHeight + 300 })
+                clippyBoxToRender.replaceWith(clippyBox)
                 const link = document.createElement('a');
                 
                 link.href = img.src; // Set the href to the image source
