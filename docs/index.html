@@ -1021,7 +1021,7 @@
     // 
     // 
     const card = html`
-        <Card style="height: fit-content; background: #fcfaca; box-shadow: none; border: black 1px solid; border-radius: 0.3em; position: relative; padding: 12px; margin-top: 1em; margin-left: 1em;">
+        <Card contenteditable style="height: fit-content; background: #fcfaca; box-shadow: none; border: black 1px solid; border-radius: 0.3em; position: relative; padding: 12px; margin-top: 1em; margin-left: 1em;">
         </Card>
     `
     let text
@@ -1036,6 +1036,7 @@
     }
     if (typeof text != "string") {
         text = "hi"
+        window.location.href = `${window.location.href}/?text=${JSON.stringify(text)}`
     }
     card.innerHTML = text.replace(/\n/g, "<span style='white-space: pre;'>\n</span>")
     // import domtoimage from "https://esm.sh/dom-to-image@2.6.0"
