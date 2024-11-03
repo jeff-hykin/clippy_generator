@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <style>
-	img { transform-origin: 0 0; transform: scale(0.6); }
+        img { transform-origin: 0 0; transform: scale(0.6); }
         .checkbox {
             display: inline-block;
             border: 1.3px solid black;
@@ -355,7 +355,6 @@
   }
 
   function draw(domNode, options) {
-    var s = 500
     return toSvg(domNode, options)
       .then(util.makeImage)
       .then(util.delay(100))
@@ -363,7 +362,7 @@
         var canvas = newCanvas(domNode);
         canvas
           .getContext('2d')
-          .drawImage(image, 0, 0, s || canvas.width, (canvas.height/canvas.width)*s);
+          .drawImage(image, 0, 0, canvas.width, canvas.height);
         return canvas;
       });
 
@@ -1157,7 +1156,7 @@
                 }
                 setUrlParameter("text", text)
             }}
-            style="text-align: left;max-width: 12rem; height: fit-content; background: #fcfaca; box-shadow: none; border: black 1.2px solid; border-radius: 0.6em; position: relative; padding: 7px; padding-left: 4px; padding-right: 4px; margin-top: 1em; margin-left: 1em;left: 6rem; top: -1rem; top">
+            style="text-align: left;max-width: 12rem; height: fit-content; background: #fcfaca; box-shadow: none; border: black 1.2px solid; border-radius: 0.3em; position: relative; padding: 7px; margin-top: 1em; margin-left: 1em;left: 6rem; top: -1rem; top">
         </Card>
     `
     var text
@@ -1202,8 +1201,8 @@
                     each.style.transform = "scale(0.0999) translateY(-4.5px)"
                 }
                 clippyBox.replaceWith(clippyBoxToRender)
-                img.src = await domtoimage.toPng(clippyBoxToRender, { height: (clippyBoxToRender.clientHeight / clippyBoxToRender.clientWidth)*350, width: 350 })
-		clippyBoxToRender.replaceWith(clippyBox)
+                img.src = await domtoimage.toPng(clippyBoxToRender, { height: clippyBoxToRender.clientHeight  })
+                clippyBoxToRender.replaceWith(clippyBox)
                 const link = document.createElement('a');
                 
                 link.href = img.src; // Set the href to the image source
