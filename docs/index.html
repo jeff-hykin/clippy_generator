@@ -355,6 +355,7 @@
   }
 
   function draw(domNode, options) {
+    var s = 200
     return toSvg(domNode, options)
       .then(util.makeImage)
       .then(util.delay(100))
@@ -362,7 +363,7 @@
         var canvas = newCanvas(domNode);
         canvas
           .getContext('2d')
-          .drawImage(image, 0, 0, 200 || canvas.width, canvas.height);
+          .drawImage(image, 0, 0, s || canvas.width, (canvas.height/canvas.width)*s);
         return canvas;
       });
 
