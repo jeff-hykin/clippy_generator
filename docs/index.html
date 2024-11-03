@@ -1157,7 +1157,7 @@
                 }
                 setUrlParameter("text", text)
             }}
-            style="text-align: left;max-width: 12rem; height: fit-content; background: #fcfaca; box-shadow: none; border: black 1.2px solid; border-radius: 0.6em; position: relative; padding: 7px; margin-top: 1em; margin-left: 1em;left: 6rem; top: -1rem; top">
+            style="text-align: left;max-width: 12rem; height: fit-content; background: #fcfaca; box-shadow: none; border: black 1.2px solid; border-radius: 0.6em; position: relative; padding: 7px; padding-left: 4px; margin-top: 1em; margin-left: 1em;left: 6rem; top: -1rem; top">
         </Card>
     `
     var text
@@ -1202,7 +1202,7 @@
                     each.style.transform = "scale(0.0999) translateY(-4.5px)"
                 }
                 clippyBox.replaceWith(clippyBoxToRender)
-                img.src = await domtoimage.toPng(clippyBoxToRender, { height: (clippyBoxToRender.clientHeight / clippyBoxToRender.clientWidth)*50, width: 50 })
+                img.src = await domtoimage.toPng(clippyBoxToRender, { height: (clippyBoxToRender.clientHeight / clippyBoxToRender.clientWidth)*200, width: 200 })
 		clippyBoxToRender.replaceWith(clippyBox)
                 const link = document.createElement('a');
                 
