@@ -1185,7 +1185,7 @@
     document.body = html`
         <body font-size=15px row wrap height="100vh" width="100%" background="var(--soft-gray-gradient)" overflow=hidden max-width="100vw">
             ${window.i}
-            <div style="position: fixed; bottom: 2rem; left: 2rem;" >
+            <div style="position: fixed; bottom: 2rem; left: 2rem;z-index: 9991;" >
                 <span>Resolution</span>
                 <input style="width: 3rem;display: block;" type="number" value="${pixelsWidth}" oninput=${({target})=>{
                      pixelsWidth = target.value-0
