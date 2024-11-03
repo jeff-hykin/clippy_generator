@@ -1201,7 +1201,7 @@
                     each.style.transform = "scale(0.0999) translateY(-4.5px)"
                 }
                 clippyBox.replaceWith(clippyBoxToRender)
-                img.src = await domtoimage.toJpeg(clippyBoxToRender, { height: clippyBoxToRender.clientHeight, quality: 0.6 })
+                img.src = await domtoimage.toJpeg(clippyBoxToRender, { height: clippyBoxToRender.clientHeight, quality: 0.3 })
                 clippyBoxToRender.replaceWith(clippyBox)
                 const link = document.createElement('a');
                 
