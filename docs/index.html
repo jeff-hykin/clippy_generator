@@ -362,7 +362,7 @@
         var canvas = newCanvas(domNode);
         canvas
           .getContext('2d')
-          .drawImage(image, 0, 0, canvas.width, canvas.height);
+          .drawImage(image, 0, 0, 200 || canvas.width, canvas.height);
         return canvas;
       });
 
@@ -1201,8 +1201,8 @@
                     each.style.transform = "scale(0.0999) translateY(-4.5px)"
                 }
                 clippyBox.replaceWith(clippyBoxToRender)
-                img.src = await domtoimage.toJpeg(clippyBoxToRender, { height: clippyBoxToRender.clientHeight, quality: 0.1 })
-                clippyBoxToRender.replaceWith(clippyBox)
+                img.src = await domtoimage.toPng(clippyBoxToRender, { height: clippyBoxToRender.clientHeight })
+		clippyBoxToRender.replaceWith(clippyBox)
                 const link = document.createElement('a');
                 
                 link.href = img.src; // Set the href to the image source
