@@ -74,6 +74,12 @@
         }
     </style>
     <style>
+        @font-face {
+            font-family: 'PixeloidSans';
+            font-style: normal;
+            font-weight: 400;
+            src: url(https://fonts.gstatic.com/s/roboto/v32/KFOmCnqEu92Fr1Mu72xKKTU1Kvnz.woff2) format('ttf');
+        }
         @import url('https://fonts.googleapis.com/css2?family=Roboto');
         @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
@@ -360,6 +366,7 @@
       .then(util.delay(100))
       .then(function (image) {
         var canvas = newCanvas(domNode);
+        console.debug(`image is:`,image)
         canvas
           .getContext('2d')
           .drawImage(image, 0, 0, canvas.width, canvas.height);
@@ -1156,7 +1163,7 @@
                 }
                 setUrlParameter("text", text)
             }}
-            style="text-align: left;max-width: 12rem; height: fit-content; background: #fcfaca; box-shadow: none; border: black 1.2px solid; border-radius: 0.3em; position: relative; padding: 7px; margin-top: 1em; margin-left: 1em;left: 6rem; top: -1rem; top">
+            style="text-align: left;max-width: 12rem; height: fit-content; background: #fcfaca; box-shadow: none; border: black 1.2px solid; border-radius: 0.3em; position: relative; margin-top: 1em; margin-left: 1em;left: 6rem; top: -1rem;font-size: 1.3rem; font-family: sans-serif;border-radius: 12px; padding: 10px 6px;">
         </Card>
     `
     var text
@@ -1198,11 +1205,26 @@
                 const clippyBoxToRender = clippyBox.cloneNode(true)
                 for (const each of [...clippyBoxToRender.querySelectorAll(".ball")]) {
                     // hack so dom2image renders correctly
-                    each.style.transform = "scale(0.0999) translateY(-4.5px)"
+                    each.style.transform = "scale(0.0999) translateY(-1.5px)"
                 }
                 clippyBox.replaceWith(clippyBoxToRender)
-                img.src = await domtoimage.toPng(clippyBoxToRender, { height: clippyBoxToRender.clientHeight  })
-                clippyBoxToRender.replaceWith(clippyBox)
+                const heightRatio = clippyBoxToRender.clientHeight/clippyBoxToRender.clientWidth
+                var image = new Image()
+                image.src = await domtoimage.toPng(clippyBoxToRender, { height: clippyBoxToRender.clientHeight  })
+                // pixlate
+                const pixelsWidth = 300
+                const canvas = document.createElement("canvas")
+                const context = canvas.getContext('2d')
+                canvas.width = pixelsWidth
+                canvas.height = heightRatio * pixelsWidth
+                console.log("waiting for it to load")
+                window.image = image
+                await new Promise((r)=>image.onload = r)
+                console.log("loaded")
+                context.drawImage(image, 0, 0, pixelsWidth, heightRatio * pixelsWidth)
+                img.src = canvas.toDataURL('image/png')
+                console.log("canvas.toDataURL('image/png')", canvas.toDataURL('image/png'))
+                
                 const link = document.createElement('a');
                 
                 link.href = img.src; // Set the href to the image source
